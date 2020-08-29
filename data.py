@@ -4,11 +4,11 @@ import os
 
 file_path = os.path.abspath(__file__)
 DATADIR = os.path.dirname(file_path)
-filename = os.path.join('file.csv', DATADIR)
+filename = os.path.join('dataset.csv', DATADIR)
 
 url = 'https://www.phoenixopendata.com/dataset/cc08aace-9ca9-467f-b6c1-f0879ab1a358/resource/0ce3411a-2fc6-4302-a33f-167f68608a20/download/crimestat.csv'
 def clean_data(url):
-    df = pd.read_csv(url, low_memory=False, parse_dates=True)
+    df = pd.read_csv(url, low_memory=False, parse_dates=True, nrows=10000)
     df = df.dropna()
     df.columns = df.columns.str.lower()
     df.columns = df.columns.str.replace(' ', '_')
@@ -26,7 +26,7 @@ def clean_data(url):
 
 
 def write_csv(url):
-    data = clean_data(url)
-    df = pd.read_csv('data.csv', index=False, nrows=10)
-    return df.to_dict()
+    df = clean_data(url)
+    df.to_csv(filename, index=False)
+    return True
 
