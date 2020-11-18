@@ -3,6 +3,7 @@ from scrape import run as scrape_runner
 import pandas as pd
 import os
 import data
+from billboard import ChartScrape
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 dataset = os.path.join(BASEDIR, 'dataset.csv')
@@ -14,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():
-    return 'Index '
+    return 'Index'
 
 @app.route('/scraper', methods=['POST'])
 def scraper_view():
@@ -28,5 +29,13 @@ def disp_data(url=url):
     df = data.write_csv(url)
     df = pd.read_csv(dataset)
     return df.to_dict("index")
+
+@app.post("/billboard-scraper")
+def scrape_runner_view():
+    trigger_log_save()
+    scrape_runner()
+    return {"data": [1,2,3]} 
+    
+    
 
 

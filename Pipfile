@@ -15,6 +15,10 @@ uvicorn = "*"
 gunicorn = "*"
 requests-html = "*"
 requests = "*"
+selenium = "*"
+jupyter = "*"
+sqlacodegen = "*"
+tailer = "*"
 
 [requires]
 python_version = "3.8"

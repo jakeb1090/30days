@@ -4,6 +4,7 @@ import os
 import pandas as pd
 from fastapi import FastAPI
 from flask import Flask
+from fastapi.responses import HTMLResponse
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 dataset = os.path.join(BASEDIR, 'data.csv')
@@ -11,9 +12,13 @@ dataset = os.path.join(BASEDIR, 'data.csv')
 
 app=FastAPI()
 
+# @app.get("/")
+# def hello_world():
+#     return {'hello':'world'}
+
 @app.get("/")
 def hello_world():
-    return {'hello':'world'}
+    return "hello"
 
 @app.get("/phxpolice")
 def read_data():
