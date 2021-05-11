@@ -69,7 +69,7 @@ def run(start_year=None, years_ago=0):
     assert isinstance(years_ago, int)
     assert len(f"{start_year}") == 4
     for i in range(0, years_ago+1):
-        url = f"https://www.boxofficemojo.com/year/world/{start_year}/"
+        url = f"/{start_year}/"
         finished = parse_and_extract(url, name=start_year)
         if finished:
             print(f"Finished {start_year}")
